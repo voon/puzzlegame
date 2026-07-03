@@ -15,8 +15,6 @@ namespace PuzzleGame
         [Tooltip("Moves the player starts with.")]
         [SerializeField] private int startingMoves = 5;
 
-        [SerializeField] private int pointsPerTestMove = 10;
-
         public int Score { get; private set; }
         public int MovesRemaining { get; private set; }
         public bool IsGameOver { get; private set; }
@@ -48,14 +46,7 @@ namespace PuzzleGame
         // Hooked to the Replay button.
         public void Replay() => StartGame();
 
-        public void MakeMove()
-        {
-            if (IsGameOver) return;
-            AddScore(pointsPerTestMove);
-            ConsumeMove();
-        }
-
-        // Adds points to the score. In Task 3 this is called with the blocks collected.
+        // Adds points to the score. Called with the number of blocks collected in a tap.
         public void AddScore(int points)
         {
             if (IsGameOver || points <= 0) return;
